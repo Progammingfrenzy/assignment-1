@@ -21,3 +21,4 @@ export default function fibRoute(req: Request<FibParams>, res: Response): void {
 
   res.send(result);
 }
+
