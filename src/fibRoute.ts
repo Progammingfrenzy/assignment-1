@@ -6,18 +6,20 @@ type FibParams = { num: string };
 
 export default function fibRoute(req: Request<FibParams>, res: Response): void {
   const { num } = req.params;
-
   const n = Number.parseInt(num, 10);
 
-  // Prevent NaN from causing infinite recursion
   if (Number.isNaN(n)) {
     res.status(400).send(`fibonacci(${num}) is undefined`);
     return;
   }
 
-  const fibN = fibonacci(n);
+  // fibonacci now returns a number (typed in src/fib.ts)
+  const fibN: number = fibonacci(n);
+
   const result =
-    fibN < 0 ? `fibonacci(${num}) is undefined` : `fibonacci(${num}) is ${fibN}`;
+    fibN < 0
+      ? `fibonacci(${num}) is undefined`
+      : `fibonacci(${num}) is ${fibN}`;
 
   res.send(result);
 }
