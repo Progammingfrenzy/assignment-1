@@ -1,3 +1,4 @@
+
 export default function fibRoute(req: Request<FibParams>, res: Response): void {
   const { num } = req.params;
 
