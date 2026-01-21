@@ -9,15 +9,18 @@ export default function fibRoute(req: Request<FibParams>, res: Response): void {
 
   const n = Number.parseInt(num, 10);
 
-  // Prevent NaN from causing infinite recursion
   if (Number.isNaN(n)) {
     res.status(400).send(`fibonacci(${num}) is undefined`);
     return;
   }
 
   const fibN = fibonacci(n);
-  const result =
-    fibN < 0 ? `fibonacci(${num}) is undefined` : `fibonacci(${num}) is ${fibN}`;
 
-  res.send(result);
+  if (fibN < 0) {
+    res.send(`fibonacci(${num}) is undefined`);
+    return;
+  }
+
+  res.send(`fibonacci(${num}) is ${fibN}`);
 }
+
