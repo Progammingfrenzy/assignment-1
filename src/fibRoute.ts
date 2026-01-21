@@ -15,9 +15,13 @@ export default function fibRoute(req: Request<FibParams>, res: Response): void {
     return;
   }
 
-  const fibN = fibonacci(n);
-  const result =
-    fibN < 0 ? `fibonacci(${num}) is undefined` : `fibonacci(${num}) is ${fibN}`;
+  const fibN: number = fibonacci(n);
 
-  res.send(result);
+  if (fibN < 0) {
+    res.send(`fibonacci(${num}) is undefined`);
+    return;
+  }
+
+  res.send(`fibonacci(${num}) is ${fibN}`);
 }
+
